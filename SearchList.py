@@ -1,4 +1,13 @@
 import re
+from bs4 import BeautifulSoup
+
+def makesfromscrap(inp:bs4.BeautifulSoup) -> dict:
+    file = {}
+    for i in inp.find_all():
+        if file.get(i.name,False) == False:
+            file[i.name]= [i.text.splitlines()]
+        file[i.name].append([i.text.splitlines()])
+    return file
 
 def rece(search:str, inputListOrDict, found, key):
     if key == None:
